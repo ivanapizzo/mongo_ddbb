@@ -45,7 +45,7 @@ Photo.updateOne({name: "Ivana"}, {description: "We have a new Peony"})
 
 
 
-Photo.deleteOne({url: "https://www.johnscheepers.com/media/catalog/product/cache/0e0f8b55cb1429f46d7faa85732ae262/p/_/p_pink_hawaiian_coral_1-w.jpg"})
+Photo.deleteOne({name: "Ivana"}, {description: "This peony was made for you"})
         .then(function(items){
             console.log("Photo has been deleted correctly");
             console.log(items);
@@ -57,7 +57,7 @@ Photo.deleteOne({url: "https://www.johnscheepers.com/media/catalog/product/cache
 
 
         
-Photo.findOneAndDelete({url: "https://www.johnscheepers.com/media/catalog/product/cache/0e0f8b55cb1429f46d7faa85732ae262/p/_/p_pink_hawaiian_coral_1-w.jpg"})
+Photo.deleteMany({nombre : "Ivana"})
         .then(function(items){
             console.log("Photo has been deleted correctly");
             console.log(items);
