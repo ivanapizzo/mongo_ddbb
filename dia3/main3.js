@@ -389,18 +389,18 @@ mongoose.connect('mongodb+srv://ivanapizzo:bocajuniors12I@cluster77.w7iii0u.mong
 
 
 
-// Obtén el top 5 de los nombres de las asignaturas cuya nota media sea mayor que 5. AUN NO
+// Obtén el top 5 de los nombres de las asignaturas cuya nota media sea mayor que 5. OK
 
-marks.MarksModel
-.aggregate([{$group: {"_id": null, "Materia": {"Materia" : "$subject_name"},
-                    "Media mayor que 5" : {"$avg": "$mark"}}}, 
-                    {$match: {$gt: 5}},
-                    {$sort: {"Media mayor que 5" : 1}}])
-.then((result) => {
-    console.log(result)
-})
-.catch((error) => 
-console.log(error))
+// marks.MarksModel
+// .aggregate([{$group: {"_id": "$subject_name",
+//                     "Media mayor que 5" : {$avg: "$mark"}}}, 
+//                     {$match: {"Media mayor que 5": {$gt: 5}}},
+//                     {$sort: {"Media mayor que 5" : 1}}])
+// .then((result) => {
+//     console.log(result)
+// })
+// .catch((error) => 
+// console.log(error))
 
 
 // Calcular el número total de alumnos que hay en el bootcamp incluyendo repetidos. OK
@@ -414,11 +414,11 @@ console.log(error))
 // console.log(error))
 
 
-// Calcular el numero de profesores que hay por cada asignatura incluyendo repetidos. AUN NO
+// Calcular el numero de profesores que hay por cada asignatura incluyendo repetidos. OK
 
-marks.TeachersModel
+marks.MarksModel
 .aggregate([{$unwind: "$teachers"},
-            {$match: {"_id": "$subject_name", "Número de profesores en Hogwarts" : {$sum: 1}}}])
+            {$group: {"_id": "$subject_name", "Número de profesores en Hogwarts" : {$sum: 1}}}])
 .then((result) => {
     console.log(result)
 })
